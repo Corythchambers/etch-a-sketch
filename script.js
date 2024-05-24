@@ -7,7 +7,6 @@ function createGrid(row, column) {
     const numberOfSquares = row * column;
     const flex = 100 / row;
 
-
     for (let i = 0; i < numberOfSquares; i++) {
         const cell = document.createElement("div");
         cell.className = "grid-cell";
