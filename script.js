@@ -1,12 +1,31 @@
 const grid = document.querySelector("#grid");
-const numberOfSquares = 16;
+let rows = 25;
+let columns = 25;
 
-for (let rowNumber = 0; rowNumber < numberOfSquares; rowNumber++) {
-    //for every row we need to add 16 squares (columns)
-    const row = document.createElement("div");
-    for (let columnNumber = 0; columnNumber < numberOfSquares; columnNumber++){
-        const column = document.createElement("div");
-        row.appendChild(column);
+function createGrid(row, column) {
+    grid.innerHTML = ''; // Clear existing grid
+    const numberOfSquares = row * column;
+    const flex = 100 / row;
+
+
+    for (let i = 0; i < numberOfSquares; i++) {
+        const cell = document.createElement("div");
+        cell.className = "grid-cell";
+        grid.appendChild(cell);
+        cell.addEventListener('mouseover', () => {
+            cell.style.background = "lightblue";
+        })
+        cell.addEventListener('click', () => {
+            cell.style.background = "peachpuff";
+        })
     }
-    grid.appendChild(row);
 }
+    
+createGrid(rows, columns);
+
+const adjustGridBtn = document.querySelector("#adjust-grid");
+adjustGridBtn.addEventListener('click', () => {
+    const newRow = prompt("Enter a new number of rows:");
+    const newColumn = prompt("Enter a new number of columns:");
+    createGrid(newRow, newColumn);
+});
